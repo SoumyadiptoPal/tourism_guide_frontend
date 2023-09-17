@@ -1,77 +1,79 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
 
-class SignUp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: '',
-      email: '',
-      password: ''
-    };
+const SignUp = () => {
+  const [user,setUser] = useState({
+    name:"",
+    email:"",
+    password:""
+  })
+
+  const { name, email, password } = user;
+  const navigate = useNavigate();
+
+  const onChange = (e) => {
+    const {name,value} = e.target
+    setUser({
+      ...user,
+      [name]:value
+    })
   }
-
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  onSignUp = (e) => {
+  
+  const onSignUp = (e) => {
     e.preventDefault();
 
     const data = {
-      _id: "000001", // Create function to automatically assign id
-      Name: this.state.name,
-      Email: this.state.email,
-      Password: this.state.password
+      _id: email, 
+      Name: name,
+      Password: password
     };
 
     axios.post('http://localhost:8082/auth/register', data)
     .then((res) => {
       alert(res.data.title);
-      this.props.history.push('/home');
+      navigate('/home')
     })
     .catch((err) => {
-      alert(err);
-      this.props.history.push('/home');
+      alert(err.response.data.errorMessage);
+      navigate('/signup');
     });
   }
 
-  render() {
-    return (
-      <div>
-        <form noValidate onSubmit={this.onSignUp}>
-          <input
-            type="text"
-            placeholder="Enter name"
-            name='name'
-            value = {this.state.name}
-            onChange = {this.onChange}
-            required
-          />         
-          <input
-            type="text"
-            placeholder="Enter email"
-            name='email'
-            value = {this.state.email}
-            onChange = {this.onChange}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Enter password"
-            name='password'
-            value = {this.state.password}
-            onChange = {this.onChange}
-            required
-          />
-          <input
-            type="submit"
-          />  
-        </form>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <form noValidate onSubmit={onSignUp}>
+        <input
+          type="text"
+          placeholder="Enter name"
+          name='name'
+          value = {name}
+          onChange = {onChange}
+          required
+         />         
+        <input
+          type="text"
+          placeholder="Enter email"
+          name='email'
+          value = {email}
+          onChange = {onChange}
+           required
+         />
+        <input
+          type="text"
+          placeholder="Enter password"
+          name='password'
+          value = {password}
+          onChange = {onChange}
+          required
+        />
+        <input
+          type="submit"
+        />  
+      </form>
+    </div>
+  )
 }
 
 export default SignUp
