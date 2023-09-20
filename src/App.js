@@ -11,11 +11,9 @@ import Login from './components/Login'
 import SignUp from './components/SignUp';
 import Search from './components/Search';
 import UploadPost from './components/UploadPost';
-import State from './Context/State';
 
 function App() {
   return (
-    <State>
     <Router>
     <div>
       <Routes>
@@ -28,7 +26,7 @@ function App() {
       </Routes>
     </div>
     </Router>
-    </State>
+
   );
 }
 

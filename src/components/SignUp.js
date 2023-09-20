@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import '../App.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { userRegister } from '../Context/State';
+import { useNavigate } from 'react-router-dom';
+import { ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from '../firebase.js';
 
 const SignUp = () => {
   const [user,setUser] = useState({
@@ -11,6 +13,7 @@ const SignUp = () => {
   })
 
   const { name, email, password } = user;
+  const [img, setImg] = useState('');
   const navigate = useNavigate();
 
   const onChange = (e) => {
@@ -27,18 +30,30 @@ const SignUp = () => {
     const data = {
       _id: email, 
       Name: name,
-      Password: password
+      Password: password,
+      Profile_Pic: `images/${email}`
     };
 
-    axios.post('http://localhost:8082/auth/register', data)
-    .then((res) => {
-      alert(res.data.title);
-      navigate('/home')
-    })
-    .catch((err) => {
-      alert(err.response.data.errorMessage);
-      navigate('/signup');
-    });
+    userRegister(data);
+  }
+
+  const onUpload = () => {
+    if (!img) return;
+
+    const storageRef = ref(storage, `images/${user.email}`);
+    const uploadTask = uploadBytesResumable(storageRef, img);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        //const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+      }
+    )
   }
 
   return (
@@ -69,11 +84,17 @@ const SignUp = () => {
           required
         />
         <input
+          type="file"
+          accept="image/"
+          onChange={(e) => setImg(e.target.files[0])}
+        />
+        <button
           type="submit"
-        />  
+          className="button"
+          onClick={onUpload}>Register</button>
       </form>
     </div>
   )
 }
 
-export default SignUp
+export default SignUp;

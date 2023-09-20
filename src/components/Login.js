@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../App.css';
-import axios from 'axios';
+import { userLogin } from '../Context/State';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -28,15 +28,7 @@ const Login = () => {
       Password: password
     };
 
-    axios.post('http://localhost:8082/auth/login', data)
-    .then((res) => {
-      alert(res.data.title);
-      navigate('/home')
-    })
-    .catch((err) => {
-      alert(err.response.data.errorMessage);
-      navigate('/login');
-    });
+    userLogin(data);
   }
 
   return (
