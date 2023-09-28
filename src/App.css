@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Ubuntu:wght@700&display=swap');
+.whole{
+    background: center/cover no-repeat url(https://th.bing.com/th/id/OIG.7Qa_AK7FU5zt0GpU6MTO?pid=ImgGn);
+    opacity: 86%;
+    padding-right: 0%;
+}
+.whole1{
+    background: center/cover no-repeat url(https://th.bing.com/th/id/OIG.ev6.yNACGWJxB9qfyoGe?pid=ImgGn);
+    opacity: 86%;
+    overflow: hidden;
+    height: 42.2em;
+}
+.name{
+    width: 32em;
+    height: 2.5em;
+    padding-left: 1em;
+    border: 7;
+    margin: 1.5% 30%;
+    margin-bottom: 2em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    font-size: 120%;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: 200;
+    outline: none;
+    opacity: 85%;
+}
+.name:hover{
+    border: 15;
+}
+h1{
+    padding-top: 25px;
+    text-align: center;
+    color: #CD0404;
+    font-family: Ubuntu;
+}
+h2{
+    text-align: center;
+    padding-bottom: 1cm;
+    color: #D61355;
+}
+.button{
+    align-items: center;
+    margin: 2% 45%;
+    font-size: 32px;
+    padding-left: 17px;
+    padding-top: 5px;
+    padding-bottom: 7px;
+    padding-right: 17px;
+    border-radius: 8%;
+    outline: none;
+    border: 1em;
+    opacity: 75%;
+}
+.button:hover{
+    cursor: pointer;
+    border: 15;
+    opacity: 100%;
+}
+.browse{
+    padding-left: 7px;
+}
+.browse:hover{
+    cursor: pointer;
+}
+p{
+    padding-left: 22.3px;
+    text-align: center;
+    font-size: 15px;
+}
+span{
+    font-size: 20px;
+    color: #040d12;
+}
+.head{
+    color: #643843;
+}
+.topic{
+    color: #F9F5F6;
+}
