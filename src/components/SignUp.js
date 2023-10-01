@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import '../App.css';
 import { userRegister } from '../Context/State';
 import { useNavigate } from 'react-router-dom';
-//import { ref, uploadBytesResumable } from "firebase/storage";
-//import { storage } from '../firebase.js';
+import { ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from '../firebase.js';
 
 
 const SignUp = () => {
@@ -47,7 +47,7 @@ const SignUp = () => {
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        //const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
+        const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
       },
       (error) => {
         console.log(error);
