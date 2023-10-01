@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from '../firebase.js';
 
+
 const SignUp = () => {
   const [user,setUser] = useState({
     name:"",
@@ -46,7 +47,7 @@ const SignUp = () => {
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        //const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
+        const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
       },
       (error) => {
         console.log(error);
@@ -57,17 +58,21 @@ const SignUp = () => {
   }
 
   return (
-    <div>
+    <div className='whole'>
       <form noValidate onSubmit={onSignUp}>
-        <input
+        <h1>Welcome to Tourism Guide!</h1>
+        <h2>Create an Account</h2>
+        <div className='form'>
+        <input className='name'
           type="text"
           placeholder="Enter name"
           name='name'
           value = {name}
           onChange = {onChange}
           required
-         />         
-        <input
+         />    
+         <br/>     
+        <input className='name'
           type="text"
           placeholder="Enter email"
           name='email'
@@ -75,7 +80,8 @@ const SignUp = () => {
           onChange = {onChange}
            required
          />
-        <input
+         <br/>
+        <input className='name'
           type="text"
           placeholder="Enter password"
           name='password'
@@ -83,15 +89,20 @@ const SignUp = () => {
           onChange = {onChange}
           required
         />
-        <input
+        <br/>
+        <p><span>Upload your profile picture</span>
+        <input className='browse'
           type="file"
           accept="image/"
           onChange={(e) => setImg(e.target.files[0])}
         />
+        </p>
+        <br/>
         <button
           type="submit"
-          className="button"
+          className="button btn-outline-success"
           onClick={onUpload}>Register</button>
+        </div>
       </form>
     </div>
   )

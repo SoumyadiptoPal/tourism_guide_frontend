@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 
+import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
 import Home from './components/Home'
 import Login from './components/Login'
@@ -16,6 +17,7 @@ function App() {
   return (
     <Router>
     <div>
+      <Navbar/>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/home' element={<Home/>}/>

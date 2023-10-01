@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import './Navbar';
 import '../App.css';
 import { userLogin } from '../Context/State';
 import { useNavigate } from 'react-router-dom';
+
+
 
 const Login = () => {
   const [user,setUser] = useState({
@@ -32,9 +35,11 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className='whole1'>
+      <h1 className='head'>Welcome to Tourism Guide!</h1>
+      <h2 className='topic'>Enter your Credentials</h2>
       <form noValidate onSubmit={onLogin}>    
-        <input
+        <input className='name'
           type="text"
           placeholder="Enter email"
           name='email'
@@ -42,7 +47,8 @@ const Login = () => {
           onChange = {onChange}
            required
          />
-        <input
+         <br/>
+        <input className='name'
           type="text"
           placeholder="Enter password"
           name='password'
@@ -50,7 +56,8 @@ const Login = () => {
           onChange = {onChange}
           required
         />
-        <input
+        <br/>
+        <input className='button btn-outline-primary'
           type="submit"
         />  
       </form>
@@ -58,4 +65,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
