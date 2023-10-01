@@ -39,7 +39,7 @@ const SignUp = () => {
   }
 
   const onUpload = () => {
-    /*if (!img) return;
+    if (!img) return;
 
     const storageRef = ref(storage, `images/${user.email}`);
     const uploadTask = uploadBytesResumable(storageRef, img);
@@ -54,7 +54,7 @@ const SignUp = () => {
       },
       () => {
       }
-    )*/
+    )
   }
 
   return (
