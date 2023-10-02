@@ -12,23 +12,25 @@ import Login from './components/Login'
 import SignUp from './components/SignUp';
 import Search from './components/Search';
 import UploadPost from './components/UploadPost';
+import State from './Context/State';
 
 function App() {
   return (
-    <Router>
-    <div>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<LandingPage/>}/>
-        <Route path='/home' element={<Home/>}/>
-        <Route path='/search' element={<Search/>}/>
-        <Route path='/upload' element={<UploadPost/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/signup' element={<SignUp/>}/>
-      </Routes>
-    </div>
-    </Router>
-
+    <State>
+      <Router>
+      <div>
+        <Navbar/>
+        <Routes>
+          <Route path='/' element={<LandingPage/>}/>
+          <Route path='/home' element={<Home/>}/>
+          <Route path='/search' element={<Search/>}/>
+          <Route path='/upload' element={<UploadPost/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<SignUp/>}/>
+        </Routes>
+      </div>
+      </Router>
+    </State>
   );
 }
 
