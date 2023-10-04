@@ -7,7 +7,7 @@ const Home = () => {
   const onSubmit = () => {
     //const userData = localStorage.getItem("userData");
     //alert(userData.token);
-    const res = userAuth({title: "Hello World"});
+    const res = userAuth({title: "HELLO World"});
   }
   return (
     <>
