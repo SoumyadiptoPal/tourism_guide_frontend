@@ -1,8 +1,21 @@
-import React from 'react'
+
+
 import '../App.css';
+
+import React, { useContext } from 'react';
+import Context from '../Context/Context';
+
 const Home = () => {
+  const { userAuth } = useContext(Context);
+
+  const onSubmit = () => {
+    //const userData = localStorage.getItem("userData");
+    //alert(userData.token);
+    const res = userAuth({title: "Hello World"});
+  }
   return (
     <>
+
     <br/>
 <br/>
 <div id="mycarousal-1" className="carousel slide" data-bs-ride="carousel">
@@ -132,6 +145,7 @@ const Home = () => {
 </div>
 </div>
 <br/>
+
     </>
   )
 }

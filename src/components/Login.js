@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import './Navbar';
 import '../App.css';
-import { userLogin } from '../Context/State';
+//import { userLogin } from '../Context/State';
 import { useNavigate } from 'react-router-dom';
-
-
+import Context from '../Context/Context';
 
 const Login = () => {
+  const { userLogin } = useContext(Context);
   const [user,setUser] = useState({
     email:"",
     password:""
@@ -23,7 +23,7 @@ const Login = () => {
     })
   }
   
-  const onLogin = (e) => {
+  const onLogin = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -31,7 +31,11 @@ const Login = () => {
       Password: password
     };
 
-    userLogin(data);
+    const response = await userLogin(data);
+
+    if (response && response.status) {
+      navigate('/home');
+    }
   }
 
   return (

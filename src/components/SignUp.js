@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import '../App.css';
-import { userRegister } from '../Context/State';
+//import { userRegister } from '../Context/State';
 import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from '../firebase.js';
-
+import Context from '../Context/Context';
 
 const SignUp = () => {
+  const { userRegister } = useContext(Context);
   const [user,setUser] = useState({
     name:"",
     email:"",
@@ -35,7 +36,11 @@ const SignUp = () => {
       Profile_Pic: `images/${email}`
     };
 
-    userRegister(data);
+    const res = userRegister(data);
+
+    if (res && res.status) {
+      navigate('/home');
+    }
   }
 
   const onUpload = () => {
