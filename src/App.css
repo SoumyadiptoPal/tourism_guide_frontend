@@ -79,3 +79,14 @@ span{
 .topic{
     color: #F9F5F6;
 }
+.text-center{
+    padding-left: 17px;
+}
+.d-block{
+    top: 10%;
+    left: 32%;
+    position: relative;
+}
+.lcs{
+    padding-left: 33em;
+}
