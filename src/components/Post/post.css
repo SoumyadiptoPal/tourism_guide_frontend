@@ -1,0 +1,26 @@
+.cont1{
+    max-width: 600px;
+    width: 100%;
+    margin: 10px;
+    border: 1px solid black;
+}
+.head_cont1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+    border: 1px solid black;
+}
+.head_cont2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.post_caption{
+    margin: 20px 15px;
+}
+li.slide{
+    margin: auto !important;
+    max-height: 550px;
+}
