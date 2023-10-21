@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
 
     const data = {
-      _id: email, 
+      Email: email, 
       Password: password
     };
 
