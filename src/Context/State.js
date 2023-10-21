@@ -46,8 +46,47 @@ const State = (props) => {
     }
   }
 
+  const getPost = async () => {
+    try {
+      const res = await axios.get(`${host}/post/`);
+      return res.data.posts;
+		} catch (err) {
+			alert(err.response.data.errorMessage);
+		}
+	}
+
+	const uploadPost = async (data) => {
+		try {
+			const res = await axios.put(`${host}/post/create`, data);
+			alert(res.data.title);
+			return res.data;
+		} catch (err) {
+			alert(err.response.data.errorMessage);
+		}
+	}
+
+	const likePost = async () => {
+		try {
+			const res = await axios.post(`${host}/post/like`);
+			alert(res.data.title);
+			return res.data;
+		} catch (err) {
+			alert(err.response.data.errorMessage);
+		}
+	}
+
+	const commentPost = async (data) => {
+		try {
+			const res = await axios.post(`${host}/post/comment`, data);
+			alert(res.data.title);
+			return res.data;
+		} catch (err) {
+			alert(err.response.data.errorMessage);
+		}
+	}
+
   return(
-    <Context.Provider value={{userRegister,userLogin,userAuth}}>
+    <Context.Provider value={{userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost}}>
       {props.children}
     </Context.Provider>
   )
