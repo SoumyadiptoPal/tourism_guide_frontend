@@ -30,10 +30,9 @@ const SignUp = () => {
     e.preventDefault();
 
     const data = {
-      _id: email, 
+      Email: email, 
       Name: name,
-      Password: password,
-      Profile_Pic: `images/${email}`
+      Password: password
     };
 
     const res = userRegister(data);
