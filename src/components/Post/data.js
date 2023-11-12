@@ -1,5 +1,5 @@
-const user={
-    profile_pic:"https://shorturl.at/blHR1",
+export const user={
+    profile_pic:"https://firebasestorage.googleapis.com/v0/b/rn-igclone-759a8.appspot.com/o/Screenshot%202023-10-03%20145045.png?alt=media&token=367acefc-b622-487c-aa07-0c0871f8ea35&_gl=1*43of9i*_ga*MTE3NzExMzU0Ni4xNjgyNTY1NjMw*_ga_CW55HF8NVT*MTY5NzM4NzU2MC41My4xLjE2OTczODc2NTguMjUuMC4w",
     Name:"Purnendu Kumar Mishra",
     Nationality:"Chinese",
     About_me:"I am a good traveller. I like to go to new places searching for pleasure.",

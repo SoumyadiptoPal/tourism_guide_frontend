@@ -13,6 +13,7 @@ import SignUp from './components/SignUp';
 import Search from './components/Search';
 import UploadPost from './components/UploadPost';
 import State from './Context/State';
+import Profile from './components/Profile/Profile';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/upload' element={<UploadPost/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/profile' element={<Profile/>}/>
         </Routes>
       </div>
       </Router>
