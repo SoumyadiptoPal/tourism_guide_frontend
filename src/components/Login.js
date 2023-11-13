@@ -42,7 +42,7 @@ const Login = () => {
     <div className='whole1'>
       <h1 className='head'>Welcome to Tourism Guide!</h1>
       <h2 className='topic'>Enter your Credentials</h2>
-      <form noValidate onSubmit={onLogin}>    
+      <form noValidate onSubmit={onLogin} className='form'>    
         <input className='name'
           type="text"
           placeholder="Enter email"
