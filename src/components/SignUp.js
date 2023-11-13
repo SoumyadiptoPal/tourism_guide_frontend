@@ -74,8 +74,7 @@ const SignUp = () => {
           value = {name}
           onChange = {onChange}
           required
-         />    
-         <br/>     
+         />      
         <input className='name'
           type="text"
           placeholder="Enter email"
@@ -84,7 +83,6 @@ const SignUp = () => {
           onChange = {onChange}
            required
          />
-         <br/>
         <input className='name'
           type="text"
           placeholder="Enter password"
@@ -93,7 +91,6 @@ const SignUp = () => {
           onChange = {onChange}
           required
         />
-        <br/>
         <p><span>Upload your profile picture</span>
         <input className='browse'
           type="file"
