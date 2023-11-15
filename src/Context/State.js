@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Context from "./Context";
 import axios from "axios";
 
@@ -6,7 +6,7 @@ const State = (props) => {
   const host = "http://localhost:8082";
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(false);
-  
+
   const userRegister = async (data) => {
     try {
       const res = await axios.post(`${host}/auth/register`, data)
@@ -26,11 +26,14 @@ const State = (props) => {
       localStorage.setItem(
         'userData',
         JSON.stringify({
-          userId: userId,
-          token: token
+          userId: res.data.userId,
+          token: res.data.token
         })
       );
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+	  //alert(res.data.token);
+	  // Replacing res.data.token with local var token
+	  // Causes unwanted behaviour. Asynchronous Bug??
+      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
       return res.data;
     } catch (err) {
       alert(err.response.data.errorMessage);
@@ -49,7 +52,7 @@ const State = (props) => {
   const getPost = async () => {
     try {
       const res = await axios.get(`${host}/post/`);
-      return res.data.posts;
+      return res.data;
 		} catch (err) {
 			alert(err.response.data.errorMessage);
 		}
