@@ -3,7 +3,7 @@ import '../App.css';
 //import { userRegister } from '../Context/State';
 import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytesResumable } from "firebase/storage";
-import { storage } from '../firebase.js';
+//import { storage } from '../firebase.js';
 import Context from '../Context/Context';
 
 const SignUp = () => {
@@ -44,22 +44,22 @@ const SignUp = () => {
   }
 
   const onUpload = () => {
-    if (!img) return;
+    // if (!img) return;
 
-    const storageRef = ref(storage, `images/${user.email}`);
-    const uploadTask = uploadBytesResumable(storageRef, img);
+    // const storageRef = ref(storage, `images/${user.email}`);
+    // const uploadTask = uploadBytesResumable(storageRef, img);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-      }
-    )
+    // uploadTask.on(
+    //   "state_changed",
+    //   (snapshot) => {
+    //     const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   },
+    //   () => {
+    //   }
+    // )
   }
 
   return (

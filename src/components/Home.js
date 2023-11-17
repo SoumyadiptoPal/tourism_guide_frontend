@@ -13,10 +13,10 @@ const Home = () => {
     <>
     <div>Home
       {/* Temporary Button to test JWT functionality */}
-    <button
+    {/* <button
           type="submit"
           className="button btn-outline-success"
-          onClick={onSubmit}>Authenticate</button>
+          onClick={onSubmit}>Authenticate</button> */}
     </div>
     </>
   )
