@@ -1,0 +1,71 @@
+.upload-post-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+.carousel-container {
+    width: 45%;
+    /* Add styles for the carousel, e.g., height, border, etc. */
+}
+  
+.description-container {
+    
+   width: 55%;
+   padding: 20px;
+   box-sizing: border-box;
+   background-color: blanchedalmond;
+}
+
+.input-group {
+    margin-bottom: 15px;
+  }
+  
+.location-info {
+    margin-bottom: 20px;
+    
+}
+.city-name{
+    text-align: left;
+}
+  
+.upload-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    
+    
+}
+.upload{
+    padding-left: 17.5em;
+}
+.select-dropdown{
+    
+    display: flex;
+    
+}
+.city-name{
+    text-align: left;
+}
+p{
+    padding-left: 22.3px;
+    text-align: left;
+}
+
+@media (max-width: 767px) {
+    .upload-post-container {
+        padding: 10px;
+    }
+
+    .carousel-container {
+        height: 200px; /* Adjust the height for smaller screens */
+    }
+
+    .upload-button {
+        width: auto;
+        margin-top: 10px;
+    }
+}
