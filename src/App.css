@@ -1,22 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Ubuntu:wght@700&display=swap');
-.whole{
-    background: center/cover no-repeat url(https://th.bing.com/th/id/OIG.7Qa_AK7FU5zt0GpU6MTO?pid=ImgGn);
-    opacity: 86%;
-    padding-right: 0%;
+.auth_container{
+    border:2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
 }
-.whole1{
-    background: center/cover no-repeat url(https://th.bing.com/th/id/OIG.ev6.yNACGWJxB9qfyoGe?pid=ImgGn);
-    opacity: 86%;
+.whole{
+    background: center/cover no-repeat url('/public/images/image\ 1.jpg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     overflow: hidden;
-    height: 42.2em;
+    height: 91.75vh;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .name{
     width: 32em;
     height: 2.5em;
     padding-left: 1em;
     border: 7;
-    margin: 1.5% 30%;
-    margin-bottom: 2em;
+    margin: 10px auto;
     padding-bottom: 0.5em;
     padding-top: 0.5em;
     font-size: 120%;
@@ -24,21 +37,18 @@
     font-style: normal;
     font-weight: 200;
     outline: none;
-    opacity: 85%;
 }
 .name:hover{
     border: 15;
 }
-h1{
+.head{
     padding-top: 25px;
     text-align: center;
-    color: #CD0404;
     font-family: Ubuntu;
 }
-h2{
+.topic{
     text-align: center;
     padding-bottom: 1cm;
-    color: #D61355;
 }
 .button{
     align-items: center;
@@ -51,12 +61,11 @@ h2{
     border-radius: 8%;
     outline: none;
     border: 1em;
-    opacity: 75%;
+    /* opacity: 75%; */
 }
 .button:hover{
     cursor: pointer;
     border: 15;
-    opacity: 100%;
 }
 .browse{
     padding-left: 7px;
@@ -69,12 +78,8 @@ p{
     text-align: center;
     font-size: 15px;
 }
-span{
-    font-size: 20px;
-    color: #040d12;
-}
 .head{
-    color: #643843;
+    color: white;
 }
 .topic{
     color: #F9F5F6;
@@ -89,4 +94,13 @@ span{
 }
 .lcs{
     padding-left: 33em;
+}
+.auth_cont1{
+    color: white;
+    font-size: 20px;
+}
+.auth_cont2{
+    color: blue;
+    cursor: pointer;
+    font-size: 20px;
 }
