@@ -39,21 +39,22 @@ const Login = () => {
   }
 
   return (
-    <div className='whole1'>
+    <div className='whole'>
+      <div className='auth_container'>
       <h1 className='head'>Welcome to Tourism Guide!</h1>
       <h2 className='topic'>Enter your Credentials</h2>
+      <span className='auth_cont1'>New to Tourism Guide? <span className='auth_cont2' onClick={()=>navigate('/signup')}>Register Here!</span></span>
       <form noValidate onSubmit={onLogin} className='form'>    
         <input className='name'
-          type="text"
+          type="email"
           placeholder="Enter email"
           name='email'
           value = {email}
           onChange = {onChange}
            required
          />
-         <br/>
         <input className='name'
-          type="text"
+          type="password"
           placeholder="Enter password"
           name='password'
           value = {password}
@@ -63,8 +64,10 @@ const Login = () => {
         <br/>
         <input className='button btn-outline-primary'
           type="submit"
+          value="Login"
         />  
       </form>
+      </div>
     </div>
   )
 }
