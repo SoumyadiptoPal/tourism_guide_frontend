@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Context from '../Context/Context';
 
 const Login = () => {
-  const { userLogin } = useContext(Context);
+  const { userLogin,userId } = useContext(Context);
   const [user,setUser] = useState({
     email:"",
     password:""
@@ -34,6 +34,7 @@ const Login = () => {
     const response = await userLogin(data);
 
     if (response && response.status) {
+      console.log(userId)
       navigate('/home');
     }
   }
