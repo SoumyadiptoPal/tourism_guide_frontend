@@ -5,7 +5,7 @@ import axios from "axios";
 const State = (props) => {
   const host = "http://localhost:8082";
   const [token, setToken] = useState(false);
-  const [userId, setUserId] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const userRegister = async (data) => {
     try {
@@ -20,7 +20,6 @@ const State = (props) => {
   const userLogin = async (data) => {
     try {
       const res = await axios.post(`${host}/auth/login`, data);
-      alert(res.data.title);
       setToken(res.data.token);
       setUserId(res.data.userId);
       localStorage.setItem(
@@ -89,7 +88,7 @@ const State = (props) => {
 	}
 
   return(
-    <Context.Provider value={{userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost}}>
+    <Context.Provider value={{userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId}}>
       {props.children}
     </Context.Provider>
   )

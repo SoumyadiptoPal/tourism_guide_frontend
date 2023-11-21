@@ -25,7 +25,8 @@
     justify-content: center;
 }
 .name{
-    width: 32em;
+    width: 85vw;
+    max-width: 32em;
     height: 2.5em;
     padding-left: 1em;
     border: 7;
