@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Context from "./Context";
 import axios from "axios";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from '../firebase.js';
 
 const State = (props) => {
   const host = "http://localhost:8082";
@@ -87,8 +89,27 @@ const State = (props) => {
 		}
 	}
 
+	const uploadImage = async (image) => {
+		const storageRef = ref(storage, `images/${image.name}`);
+		const uploadTask = uploadBytesResumable(storageRef, image);
+	
+		let imgUrl;
+		uploadTask.on(
+			"state_changed",
+			(snapshot) => {},
+			(error) => {
+				console.log(error);
+			}
+		);
+
+		await uploadTask;
+		imgUrl = await getDownloadURL(ref(storage, `images/${image.name}`));
+		alert(imgUrl);
+		return imgUrl;
+	}
+	
   return(
-    <Context.Provider value={{userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId}}>
+    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost}}>
       {props.children}
     </Context.Provider>
   )
