@@ -63,10 +63,11 @@ const SignUp = () => {
 
   return (
     <div className='whole'>
-      <form noValidate onSubmit={onSignUp}>
-        <h1>Welcome to Tourism Guide!</h1>
-        <h2>Create an Account</h2>
-        <div className='form'>
+      <div className='auth_container'>
+        <h1 className='head'>Welcome to Tourism Guide!</h1>
+        <h2 className='topic' style={{padding:'5px'}}>Create an Account</h2>
+        <span className='auth_cont1'>Already a member? <span className='auth_cont2' onClick={()=>navigate('/login')}>Login!</span></span>
+        <form noValidate onSubmit={onSignUp} className='form'>
         <input className='name'
           type="text"
           placeholder="Enter name"
@@ -76,7 +77,7 @@ const SignUp = () => {
           required
          />      
         <input className='name'
-          type="text"
+          type="email"
           placeholder="Enter email"
           name='email'
           value = {email}
@@ -84,7 +85,7 @@ const SignUp = () => {
            required
          />
         <input className='name'
-          type="text"
+          type="password"
           placeholder="Enter password"
           name='password'
           value = {password}
@@ -98,13 +99,12 @@ const SignUp = () => {
           onChange={(e) => setImg(e.target.files[0])}
         />
         </p>
-        <br/>
         <button
           type="submit"
           className="button btn-outline-success"
           onClick={onUpload}>Register</button>
-        </div>
       </form>
+      </div>
     </div>
   )
 }

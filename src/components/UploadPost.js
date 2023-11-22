@@ -1,6 +1,38 @@
 import React, { useState, useContext } from 'react';
+import {
+  TextField,
+  TextareaAutosize,
+  Button,
+  Input,
+  FormControl,
+  Container,
+  Grid,
+  Paper,
+} from '@mui/material';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '../UploadPost.css';
 import Context from '../Context/Context';
+
+
+
+const items = [
+  {
+    id: 1,
+    src: 'https://th.bing.com/th/id/OIG.YaPpNeB7O.J1wIwa8rnj?w=270&h=270&c=6&r=0&o=5&dpr=1.5&pid=ImgGn',
+    alt: 'Image 1',
+  },
+  {
+    id: 2,
+    src: 'https://th.bing.com/th/id/OIG._Z2M4PuGy8DPMFLVh5.L?w=270&h=270&c=6&r=0&o=5&dpr=1.5&pid=ImgGn',
+    alt: 'Image 2',
+  },
+  {
+    id: 3,
+    src: 'https://th.bing.com/th/id/OIG.yT1lJqGUEFWumCmyJy09?w=270&h=270&c=6&r=0&o=5&dpr=1.5&pid=ImgGn',
+    alt: 'Image 3',
+  },
+];
 
 const UploadPost = () => {
   const { uploadImage, uploadPost } = useContext(Context);
@@ -46,72 +78,72 @@ const UploadPost = () => {
   }
 
   return (
-    <div className="upload-post-container">
-      <div className="carousel-container">
-        <br />
-        <br />
-        <div id="mycarousal-1" className="carousel slide" data-bs-ride="carousel">
-          <div className="carousel-indicators">
-            <button type="button" data-bs-target="#mycarousal-1" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#mycarousal-1" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#mycarousal-1" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          </div>
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img src="https://th.bing.com/th/id/OIG.YaPpNeB7O.J1wIwa8rnj?w=270&h=270&c=6&r=0&o=5&dpr=1.5&pid=ImgGn" className="d-block" alt="..." width={'500px'} />
+    <Container maxWidth="lg" className="upload-post-container">
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          {/* Carousel Component */}
+          <Paper elevation={3} className="carousel-container">
+            <Carousel>
+              {items.map((item) => (
+                <div key={item.id}>
+                  <img src={item.src} alt={item.alt} style={{ width: '72%' }} />
+                </div>
+              ))}
+            </Carousel>
+          </Paper>
+        </Grid>
+
+        <Grid item xs={12} sm={6}>
+          {/* Description Container */}
+          <Paper elevation={3} className="description-container">
+            <div className="location-info">
+              <FormControl fullWidth variant="outlined" className="mb-3">
+                
+                <TextField
+                  id="outlined-title"
+                  type="text"
+                  placeholder="Enter title"
+                  value={title}
+                  onChange={handleTitleChange}
+                  variant="outlined"
+                />
+              </FormControl>
+
+              <FormControl fullWidth variant="outlined" className="mb-3">
+                
+                <TextareaAutosize
+                  id="outlined-description"
+                  rowsMin={3}
+                  placeholder="Enter description"
+                  value={description}
+                  onChange={handleDescriptionChange}
+                  className="form-control"
+                />
+              </FormControl>
+
+              {/* Tags Input */}
+              <FormControl fullWidth variant="outlined" className="mb-3">
+                
+                <TextField id="outlined-tags" type="text" placeholder="Enter tags" variant="outlined" />
+              </FormControl>
+
+              {/* File Input */}
+              <FormControl fullWidth className="mb-3">
+                
+                <Input type="file" id="input-upload-photo" onChange={handleFileChange} multiple />
+              </FormControl>
+
+              {/* Upload Button */}
+              <div className="upload">
+                <Button variant="contained" color="primary" onClick={handleUpload}>
+                  Upload
+                </Button>
+              </div>
             </div>
-            <div className="carousel-item">
-              <img src="https://th.bing.com/th/id/OIG._Z2M4PuGy8DPMFLVh5.L?w=270&h=270&c=6&r=0&o=5&dpr=1.5&pid=ImgGn" className="d-block" alt="..." width={'500px'} />
-            </div>
-            <div className="carousel-item">
-              <img src="https://th.bing.com/th/id/OIG.yT1lJqGUEFWumCmyJy09?w=270&h=270&c=6&r=0&o=5&dpr=1.5&pid=ImgGn" className="d-block" alt="..." width={'500px'} />
-            </div>
-          </div>
-          <button className="carousel-control-prev btn-dark outline" type="button" data-bs-target="#mycarousal-1" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button className="carousel-control-next btn-dark outline" type="button" data-bs-target="#mycarousal-1" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
-
-      <div className="description-container"><br />
-
-
-
-        <div className="location-info">
-          <div className="input-group mb-3">
-            <span className="input-group-text">Title</span>
-            <input type="text" className="form-control" placeholder="Enter title" value={title} onChange={handleTitleChange}/>
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="exampleFormControlTextarea1" className="form-label">Description</label>
-            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter description" value={description} onChange={handleDescriptionChange}></textarea>
-          </div>
-
-          <div className="input-group mb-3">
-            <span className="input-group-text">Tags</span>
-            <input type="text" className="form-control" placeholder="Enter tags" />
-          </div>
-
-          <div class="input-group mb-3">
-            <input type="file" class="form-control" id="inputGroupFile02" onChange={handleFileChange} multiple />
-            <label class="input-group-text" for="inputGroupFile02">Upload Photo</label>
-          </div>
-
-
-
-
-          <div className='upload'>
-            <button className="upload-button" onClick={handleUpload}>Upload</button>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
