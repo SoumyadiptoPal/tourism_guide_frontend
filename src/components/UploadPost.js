@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../UploadPost.css';
+import Context from '../Context/Context';
 
 const UploadPost = () => {
+  const { uploadImage, uploadPost } = useContext(Context);
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [images, setImages] = useState([]);
+  const [urls, setUrls] = useState([]);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -15,18 +19,31 @@ const UploadPost = () => {
   };
 
   const handleFileChange = (e) => {
-    // Assuming you want to handle multiple image uploads
     const selectedImages = Array.from(e.target.files);
     setImages(selectedImages);
   };
 
-  const handleUpload = () => {
-    // Perform the upload logic using the state values (title, description, images)
-    // You can make an API call or perform any other necessary actions here
-    console.log('Title:', title);
-    console.log('Description:', description);
-    console.log('Images:', images);
-  };
+  const handleUpload = async () => {
+    //console.log('Title:', title);
+    //console.log('Description:', description);
+    //console.log('Images:', images);
+	
+	for (const image of images) {
+      try { 		
+		const url = await uploadImage(image);
+		setUrls((prevState) => [...prevState, url]);
+	  } catch (error) {
+		alert(error);
+		return;
+	  }
+	}
+
+	uploadPost({
+	  Title: title,
+	  Description: description,
+	  Picture: urls
+	});
+  }
 
   return (
     <div className="upload-post-container">
@@ -68,7 +85,7 @@ const UploadPost = () => {
         <div className="location-info">
           <div className="input-group mb-3">
             <span className="input-group-text">Title</span>
-            <input type="text" className="form-control" placeholder="Enter title" />
+            <input type="text" className="form-control" placeholder="Enter title" value={title} onChange={handleTitleChange}/>
           </div>
 
           <div className="mb-3">
