@@ -2,7 +2,7 @@
     max-width: 600px;
     width: 100%;
     margin: 10px;
-    border: 1px solid black;
+    border: 1px solid white;
 }
 .head_cont1{
     display: flex;
@@ -10,7 +10,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 5px 15px;
-    border: 1px solid black;
+    border: 1px solid white;
+    color: aliceblue;
 }
 .head_cont2{
     display: flex;

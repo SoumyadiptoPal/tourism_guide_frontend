@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     width: 95vw;
+    color: aliceblue;
 }
 @media screen and (max-width: 500px) {
     .profile_cont1{
@@ -13,7 +14,7 @@
 .profile_cont2{
     width:100%;
     max-width: 450px;
-    border: 1px solid black;
+    border: 1px solid white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,10 +22,11 @@
     margin: 10px;
     padding: 20px;
     max-height: 85vh;
+    color: aliceblue;
 }
 .profile_cont3{
     flex-grow: 1;
-    border: 1px solid black;
+    border: 1px solid white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,6 +35,7 @@
     padding: 20px;
     max-height: 85vh;
     overflow: scroll;
+    color: aliceblue;
 }
 .profile_cont3::-webkit-scrollbar{
     display: none;

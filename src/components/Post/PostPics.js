@@ -4,7 +4,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const PostPics = ({images}) => {
   return (
-    <div style={{backgroundColor:"black"}}>
+    <div style={{backgroundColor:"white"}}>
         <Carousel showThumbs={false} showStatus={false} autoPlay infiniteLoop>
             {images.map((imageURL)=>(
                 <div>
