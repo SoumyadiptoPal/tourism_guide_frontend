@@ -8,13 +8,10 @@ const State = (props) => {
   const host = "http://localhost:8082";
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(null);
-  const [User,setUser]=useState(null);
   
   const userRegister = async (data) => {
     try {
       const res = await axios.post(`${host}/auth/register`, data)
-      console.log(res);
-	  User=res.data.user;
       setToken(res.data.token);
       setUserId(res.data.userId);
       localStorage.setItem(
@@ -24,6 +21,10 @@ const State = (props) => {
           token: res.data.token
         })
       );
+      localStorage.setItem(
+        'userDetails',
+        JSON.stringify(res.data.user)
+      )
 	  //alert(res.data.token);
 	  // Replacing res.data.token with local var token
 	  // Causes unwanted behaviour. Asynchronous Bug??
@@ -37,8 +38,6 @@ const State = (props) => {
   const userLogin = async (data) => {
     try {
       const res = await axios.post(`${host}/auth/login`, data);
-	  console.log(res);
-	  setUser(res.data.user);
       setToken(res.data.token);
       setUserId(res.data.userId);
       localStorage.setItem(
@@ -48,6 +47,10 @@ const State = (props) => {
           token: res.data.token
         })
       );
+      localStorage.setItem(
+        'userDetails',
+        JSON.stringify(res.data.user)
+      )
 	  //alert(res.data.token);
 	  // Replacing res.data.token with local var token
 	  // Causes unwanted behaviour. Asynchronous Bug??
@@ -126,7 +129,7 @@ const State = (props) => {
 	}
 	
   return(
-    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,User}}>
+    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId}}>
       {props.children}
     </Context.Provider>
   )
