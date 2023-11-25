@@ -38,7 +38,10 @@ const SignUp = () => {
     const res = userRegister(data);
 
     if (res && res.status) {
-      navigate('/home');
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 100);
+      window.location.reload();
     }
   }
 

@@ -7,11 +7,12 @@ const Navbar = () => {
   const {userId,setUserId}=useContext(Context);
   const navigate=useNavigate();
   const handleLogout=async()=>{
-    // const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-    await setUserId(false);
+    setUserId(false);
     localStorage.removeItem('userData');
-  // await delay(1000); 
-  navigate('/login');
+    setTimeout(() => {
+      window.location.href = '/login';
+    }, 200);
+    window.location.reload();
   }
   return (
     <div style={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", padding:"0px 20px", backgroundColor:"rgb(25,118,210)", height:"50px", position:"sticky", top:"0px", zIndex:"100"}}>

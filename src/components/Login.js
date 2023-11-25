@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import './Navbar';
 import '../App.css';
 //import { userLogin } from '../Context/State';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Context from '../Context/Context';
 
 const Login = () => {
-  const { userLogin,userId } = useContext(Context);
+  const { userLogin,User } = useContext(Context);
   const [user,setUser] = useState({
     email:"",
     password:""
@@ -15,6 +15,10 @@ const Login = () => {
   const { email, password } = user;
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   window.location.reload();
+  //   }, [User])
+    
   const onChange = (e) => {
     const {name,value} = e.target
     setUser({
@@ -34,8 +38,11 @@ const Login = () => {
     const response = await userLogin(data);
 
     if (response && response.status) {
-      console.log(userId)
-      navigate('/home');
+      console.log(User);
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 100);
+      window.location.reload();
     }
   }
 

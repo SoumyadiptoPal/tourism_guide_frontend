@@ -8,12 +8,27 @@ const State = (props) => {
   const host = "http://localhost:8082";
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(null);
-
+  const [User,setUser]=useState(null);
+  
   const userRegister = async (data) => {
     try {
       const res = await axios.post(`${host}/auth/register`, data)
-      alert(res.data.title);
-      return res.data
+      console.log(res);
+	  User=res.data.user;
+      setToken(res.data.token);
+      setUserId(res.data.userId);
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({
+          userId: res.data.userId,
+          token: res.data.token
+        })
+      );
+	  //alert(res.data.token);
+	  // Replacing res.data.token with local var token
+	  // Causes unwanted behaviour. Asynchronous Bug??
+      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+      return res.data;
     } catch (err) {
       alert(err.response.data.errorMessage);
     }
@@ -22,6 +37,8 @@ const State = (props) => {
   const userLogin = async (data) => {
     try {
       const res = await axios.post(`${host}/auth/login`, data);
+	  console.log(res);
+	  setUser(res.data.user);
       setToken(res.data.token);
       setUserId(res.data.userId);
       localStorage.setItem(
@@ -109,7 +126,7 @@ const State = (props) => {
 	}
 	
   return(
-    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId}}>
+    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,User}}>
       {props.children}
     </Context.Provider>
   )
