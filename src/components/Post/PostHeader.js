@@ -1,20 +1,41 @@
 import { Avatar, Button } from '@mui/material'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import Context from '../../Context/Context';
 
-const PostHeader = ({name, profilePic}) => {
+const PostHeader = ({owner, currentUser}) => {
+  const [flag,setFlag]=useState(owner.Followers.includes(currentUser._id));
+  
+  const {addFollower,removeFollower}=useContext(Context);
+  
+  const addFollowers= async ()=>{
+    owner.Followers=[...owner.Followers, currentUser._id];
+    await addFollower(owner._id);
+    setFlag(true);
+  }
+  const removeFollowers= async ()=>{
+    owner.Followers=owner.Followers.filter(item => item !== currentUser._id);
+    await removeFollower(owner._id);
+    setFlag(false);
+  }
   return (
     <div className='head_cont1'>
         <div className='head_cont2'>
         <Avatar
-  alt="Remy Sharp"
-  src={profilePic}
+  alt={owner.Name}
+  src={owner.Profile_Pic}
   sx={{ width: 45, height: 45 }}
 />
 
-    <div style={{marginLeft:8, fontWeight:"bolder", fontSize:'1.2rem'}}>{name}</div>
+    <div style={{marginLeft:8, fontWeight:"bolder", fontSize:'1.2rem'}}>{owner.Name}</div>
         </div>
         <div>
-            <Button variant='contained'>Follow</Button>
+          {
+            (flag)
+            ?
+            <Button variant='outlined' onClick={()=>removeFollowers()}>Following</Button>
+            :
+            <Button variant='contained' onClick={()=>addFollowers()}>Follow</Button>
+          }
         </div>
     </div>
   )

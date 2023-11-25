@@ -8,6 +8,7 @@ const State = (props) => {
   const host = "http://localhost:8082";
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(null);
+  const currentUser=JSON.parse(localStorage.getItem('userDetails'));
   
   const userRegister = async (data) => {
     try {
@@ -127,9 +128,19 @@ const State = (props) => {
 		alert(imgUrl);
 		return imgUrl;
 	}
+
+  const addFollower= async (id)=>{
+    const data={_id: id};
+    const res = await axios.post(`${host}/auth/addFollower`, data);
+  }
+
+  const removeFollower= async (id) => {
+    const data={_id: id};
+    const res = await axios.post(`${host}/auth/removeFollower`, data);
+  }
 	
   return(
-    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId}}>
+    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower}}>
       {props.children}
     </Context.Provider>
   )

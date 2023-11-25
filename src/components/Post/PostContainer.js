@@ -6,7 +6,7 @@ import Context from '../../Context/Context';
 const PostContainer = () => {
   const { getPost } = useContext(Context);
   const [postData, setPostData] = useState({ status: false, posts: [] });
-  
+  const [currentUser,setCurrentUser]=useState(JSON.parse(localStorage.getItem('userDetails')))
   useEffect(() => {
 	const fetchData = async () => {
 	  try {
@@ -24,7 +24,7 @@ const PostContainer = () => {
     <div style={{display:"flex", flexDirection:'column', justifyContent:"center", alignItems:"center"}}>
         {
             postData.posts.map((post,index)=>(
-                <Post post={post} key={index}/>
+                <Post post={post} key={index} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             ))
         }
     </div>
