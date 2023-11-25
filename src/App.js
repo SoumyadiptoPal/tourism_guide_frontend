@@ -14,35 +14,42 @@ import UploadPost from './components/UploadPost';
 import State from './Context/State';
 import Profile from './components/Profile/Profile';
 import NotFound from './components/NotFound';
-import Context from './Context/Context';
-import { useContext } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function App() {
-  const {userId}=useContext(Context);
+  const [isLoggedIn,setLoggedIn]=useState(false);
+  useEffect(() => {
+    if(localStorage.getItem('userData'))
+    setLoggedIn(true);
+    else
+    setLoggedIn(false);
+  }, [])
+
   return (
     <State>
       <Router>
       <div>
         <Navbar/>
         <Routes>
-          {/* commented out code will add security to the code. Only if the user is logged in, the user will be allowed to enter home. */}
-          {/* {(userId)?
-          <> */}
-          {/* <Route path='/' element={<Home/>}/> */}
-          <Route path='/home' element={<Home/>}/>
+          {/* commented out code will add security to the code. Only if the user is logged in, the user will be allowed to enter home.  */}
+           {isLoggedIn?
+          <>
+          <Route path='/' element={<Home/>}/>
           <Route path='/search' element={<Search/>}/>
           <Route path='/upload' element={<UploadPost/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='*' element={<NotFound/>}/>
-          {/* </>
+          </>
           :
-          <> */}
+          <>
           <Route path='/' element={<Login/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='*' element={<NotFound/>}/>
-          {/* </>} */}
+          </>}
         </Routes>
+        
       </div>
       </Router>
     </State>

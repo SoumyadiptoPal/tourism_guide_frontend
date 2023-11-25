@@ -6,8 +6,8 @@ const PostPics = ({images}) => {
   return (
     <div style={{backgroundColor:"black"}}>
         <Carousel showThumbs={false} showStatus={false} autoPlay infiniteLoop>
-            {images.map((imageURL)=>(
-                <div>
+            {images.map((imageURL,index)=>(
+                <div key={index}>
                 <img src={imageURL} style={{maxHeight: "500px"}}/>
                 </div>
             ))}

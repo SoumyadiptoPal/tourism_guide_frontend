@@ -8,12 +8,29 @@ const State = (props) => {
   const host = "http://localhost:8082";
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(null);
-
+  const currentUser=JSON.parse(localStorage.getItem('userDetails'));
+  
   const userRegister = async (data) => {
     try {
       const res = await axios.post(`${host}/auth/register`, data)
-      alert(res.data.title);
-      return res.data
+      setToken(res.data.token);
+      setUserId(res.data.userId);
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({
+          userId: res.data.userId,
+          token: res.data.token
+        })
+      );
+      localStorage.setItem(
+        'userDetails',
+        JSON.stringify(res.data.user)
+      )
+	  //alert(res.data.token);
+	  // Replacing res.data.token with local var token
+	  // Causes unwanted behaviour. Asynchronous Bug??
+      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+      return res.data;
     } catch (err) {
       alert(err.response.data.errorMessage);
     }
@@ -31,6 +48,10 @@ const State = (props) => {
           token: res.data.token
         })
       );
+      localStorage.setItem(
+        'userDetails',
+        JSON.stringify(res.data.user)
+      )
 	  //alert(res.data.token);
 	  // Replacing res.data.token with local var token
 	  // Causes unwanted behaviour. Asynchronous Bug??
@@ -107,9 +128,19 @@ const State = (props) => {
 		alert(imgUrl);
 		return imgUrl;
 	}
+
+  const addFollower= async (id)=>{
+    const data={_id: id};
+    const res = await axios.post(`${host}/auth/addFollower`, data);
+  }
+
+  const removeFollower= async (id) => {
+    const data={_id: id};
+    const res = await axios.post(`${host}/auth/removeFollower`, data);
+  }
 	
   return(
-    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId}}>
+    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower}}>
       {props.children}
     </Context.Provider>
   )
