@@ -9,7 +9,7 @@ const Navbar = () => {
   const handleLogout=async()=>{
     localStorage.removeItem('userData');
     setTimeout(() => {
-      window.location.href = '/login';
+      window.location.href = '/';
     }, 200);
     window.location.reload();
   }
@@ -23,7 +23,7 @@ const Navbar = () => {
         <Avatar
         src={user.Profile_Pic}
         alt={user.Name}
-        onClick={()=>navigate('/profile')}/>
+        onClick={()=>navigate('/profile',{state:{user: user}})}/>
       </div>
       </>
       :

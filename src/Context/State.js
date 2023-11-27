@@ -132,11 +132,15 @@ const State = (props) => {
   const addFollower= async (id)=>{
     const data={_id: id};
     const res = await axios.post(`${host}/auth/addFollower`, data);
+
+    //TODO: Make a call to update the local Storage
   }
 
   const removeFollower= async (id) => {
     const data={_id: id};
     const res = await axios.post(`${host}/auth/removeFollower`, data);
+
+    //TODO: Make a call to update the local Storage
   }
 	
   return(
