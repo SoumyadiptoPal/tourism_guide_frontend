@@ -40,7 +40,6 @@ const UploadPost = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [images, setImages] = useState([]);
-  const [urls, setUrls] = useState([]);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -60,20 +59,21 @@ const UploadPost = () => {
     //console.log('Description:', description);
     //console.log('Images:', images);
 	
-	for (const image of images) {
+    let array=[];
+	for (let image of images) {
       try { 		
 		const url = await uploadImage(image);
-		setUrls((prevState) => [...prevState, url]);
+    array=[...array,url];
 	  } catch (error) {
 		alert(error);
 		return;
 	  }
 	}
 
-	uploadPost({
+	await uploadPost({
 	  Title: title,
 	  Description: description,
-	  Picture: urls
+	  Picture: array
 	});
   }
 
