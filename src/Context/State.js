@@ -142,9 +142,18 @@ const State = (props) => {
 
     //TODO: Make a call to update the local Storage
   }
+
+  const updateArray=async (ids)=>{
+    const data={
+      ids:ids
+    }
+
+    const res = await axios.post(`${host}/auth/populate`, data);
+    return res.data.ans;
+  }
 	
   return(
-    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower}}>
+    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower,updateArray}}>
       {props.children}
     </Context.Provider>
   )

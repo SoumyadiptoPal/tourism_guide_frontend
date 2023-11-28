@@ -1,6 +1,8 @@
 import { Box, Button, Modal } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined";
+import Context from "../../Context/Context";
+import DisplayUser from "../displayUser";
 const style = {
   position: "absolute",
   top: "50%",
@@ -14,7 +16,10 @@ const style = {
 };
 
 const Details = ({ user }) => {
+  const {updateArray}=useContext(Context);
   const flag = JSON.parse(localStorage.getItem("userDetails"))._id == user._id;
+  const [followerDetails,setFollowerDetails]=useState([]);
+  const [followingDetails,setFollowingDetails]=useState([]);
   const editImage = () => {};
   const updateDetails = () => {
     //Open a modal, display a form to let the user update all the details
@@ -22,6 +27,15 @@ const Details = ({ user }) => {
   //Creata a modal for followers and following
   const [open, setOpen] = useState(false);
   const [choice, setChoice] = useState(0);
+
+  useEffect(() => {
+    const populate=async()=>{
+      setFollowerDetails(await updateArray(user.Followers));
+      setFollowingDetails(await updateArray(user.Following));
+    }
+    populate();
+  }, [])
+  
   const handleOpen = (ch) => {
     setOpen(true);
     setChoice(ch);
@@ -117,9 +131,9 @@ const Details = ({ user }) => {
       >
         <Box sx={style}>
           {choice === 0 ? null : choice === 1 ? (
-            <Followers Followers={user.Followers}/>
+            <Followers Followers={user.Followers} followerDetails={followerDetails}/>
           ) : choice === 2 ? (
-            <Following Following={user.Following}/>
+            <Following Following={user.Following} followingDetails={followingDetails}/>
           ) : (
             <>Update</>
           )}
@@ -129,23 +143,59 @@ const Details = ({ user }) => {
   );
 };
 
-const Followers = ({Followers}) => {
-    useEffect(() => {
-      console.log(Followers);
-    }, [])
+const Followers = ({followerDetails}) => {
+  const [people,setPeople]=useState(followerDetails);
     
     return(
-        <div>Followers</div>
+      <>
+      {
+        (followerDetails.length>0)?
+          <div>
+          {
+            people.map((item)=>{
+              return(
+                <DisplayUser people={item}/>
+              )
+            })
+          }
+          </div>
+          :
+          <div>
+            <i>You do not Have any Followers yet. </i>
+          </div>
+        
+      }
+      </>
     )
 };
 
-const Following = ({Following}) => {
+const Following = ({followingDetails}) => {
+  const [people,setPeople]=useState(followingDetails);
+
     useEffect(() => {
-      console.log(Following);
+      
     }, [])
     
     return(
-        <div>Following</div>
+      <>
+      {
+        (followingDetails.length>0)?
+          <div>
+          {
+            people.map((item)=>{
+              return(
+                <DisplayUser people={item}/>
+              )
+            })
+          }
+          </div>
+          :
+          <div>
+            <i>You do not Have any Followings yet. </i>
+          </div>
+        
+      }
+      </>
     )
 };
 
