@@ -8,6 +8,7 @@ const Navbar = () => {
   const navigate=useNavigate();
   const handleLogout=async()=>{
     localStorage.removeItem('userData');
+    localStorage.removeItem('userDetails');
     setTimeout(() => {
       window.location.href = '/login';
     }, 200);
