@@ -14,7 +14,7 @@ const Profile = () => {
           <Details user={user}/>
         </div>
         <div className='profile_cont3'>
-          <AllPosts/>
+          <AllPosts user={user}/>
         </div>
     </div>
   )
