@@ -138,9 +138,18 @@ const State = (props) => {
     const data={_id: id};
     const res = await axios.post(`${host}/auth/removeFollower`, data);
   }
-	
+
+  const getUserData = async (data) => {
+	try {
+		const res = await axios.get(`${host}/auth/userDetails`, data);
+		return res.data;
+	} catch (err) {
+		alert(err.response.data.errorMessage);
+	}
+  }
+
   return(
-    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower}}>
+    <Context.Provider value={{getUserData,uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower}}>
       {props.children}
     </Context.Provider>
   )
