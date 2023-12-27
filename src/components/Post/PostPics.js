@@ -8,7 +8,7 @@ const PostPics = ({images}) => {
         <Carousel showThumbs={false} showStatus={false} autoPlay infiniteLoop>
             {images.map((imageURL,index)=>(
                 <div key={index}>
-                <img src={imageURL} style={{maxHeight: "500px"}}/>
+                <img src={imageURL} style={{maxHeight:"500px", objectFit:'contain'}}/>
                 </div>
             ))}
                 

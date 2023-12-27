@@ -132,11 +132,24 @@ const State = (props) => {
   const addFollower= async (id)=>{
     const data={_id: id};
     const res = await axios.post(`${host}/auth/addFollower`, data);
+
+    //TODO: Make a call to update the local Storage
   }
 
   const removeFollower= async (id) => {
     const data={_id: id};
     const res = await axios.post(`${host}/auth/removeFollower`, data);
+
+    //TODO: Make a call to update the local Storage
+  }
+
+  const updateArray=async (ids)=>{
+    const data={
+      ids:ids
+    }
+
+    const res = await axios.post(`${host}/auth/populate`, data);
+    return res.data.ans;
   }
 
   const getUserData = async (data) => {
@@ -149,7 +162,7 @@ const State = (props) => {
   }
 
   return(
-    <Context.Provider value={{getUserData,uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower}}>
+    <Context.Provider value={{uploadImage, getUserData,uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower, updateArray}}>
       {props.children}
     </Context.Provider>
   )
