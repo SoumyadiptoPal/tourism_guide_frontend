@@ -151,6 +151,7 @@ const State = (props) => {
     return res.data.ans;
   }
 
+
   const fetchPosts=async(id)=>{
     const params={
       "_id": id
@@ -162,9 +163,18 @@ const State = (props) => {
     console.log(res.data);
     return res.data.posts;
   }
-	
+
+  const getUserData = async (data) => {
+	try {
+		const res = await axios.get(`${host}/auth/userDetails`, data);
+		return res.data;
+	} catch (err) {
+		alert(err.response.data.errorMessage);
+	}
+  }
+
   return(
-    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower,updateArray, fetchPosts}}>
+    <Context.Provider value={{getUserData,uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower, updateArray, fetchPosts}}>
       {props.children}
     </Context.Provider>
   )
