@@ -151,9 +151,18 @@ const State = (props) => {
     const res = await axios.post(`${host}/auth/populate`, data);
     return res.data.ans;
   }
-	
+
+  const getUserData = async (data) => {
+	try {
+		const res = await axios.get(`${host}/auth/userDetails`, data);
+		return res.data;
+	} catch (err) {
+		alert(err.response.data.errorMessage);
+	}
+  }
+
   return(
-    <Context.Provider value={{uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower,updateArray}}>
+    <Context.Provider value={{uploadImage, getUserData,uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower, updateArray}}>
       {props.children}
     </Context.Provider>
   )
