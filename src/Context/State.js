@@ -5,7 +5,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from '../firebase.js';
 
 const State = (props) => {
-  const host = "http://localhost:8082";
+  const host = process.env.REACT_APP_BACKEND_URL;
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(null);
   const currentUser=JSON.parse(localStorage.getItem('userDetails'));
@@ -103,7 +103,6 @@ const State = (props) => {
 	const commentPost = async (data) => {
 		try {
 			const res = await axios.post(`${host}/post/comment`, data);
-			alert(res.data.title);
 			return res.data;
 		} catch (err) {
 			alert(err.response.data.errorMessage);
@@ -152,6 +151,19 @@ const State = (props) => {
     return res.data.ans;
   }
 
+
+  const fetchPosts=async(id)=>{
+    const params={
+      "_id": id
+    }
+    const res =await axios.get(`${host}/post/getallposts`, {
+      params: params
+    }
+  )
+    console.log(res.data);
+    return res.data.posts;
+  }
+
   const getUserData = async (data) => {
 	try {
 		const res = await axios.get(`${host}/auth/userDetails`, data);
@@ -162,7 +174,7 @@ const State = (props) => {
   }
 
   return(
-    <Context.Provider value={{uploadImage, getUserData,uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower, updateArray}}>
+    <Context.Provider value={{getUserData,uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower, updateArray, fetchPosts}}>
       {props.children}
     </Context.Provider>
   )

@@ -12,7 +12,7 @@ const Post = ({post,currentUser}) => {
             {post.Description}
         </div>
         <PostPics images={post.Picture}/>
-        <PostFooter likes={post.Likes.length} comments={post.Comments.length} shares={post.Shares}/>
+        <PostFooter likes={post.Likes} comments={post.Comments} shares={post.Shares} currentUser={currentUser} id={post._id}/>
     </div>
   )
 }

@@ -11,6 +11,7 @@ const PostContainer = () => {
 	const fetchData = async () => {
 	  try {
 		const data = await getPost();
+    console.log(data);
 		setPostData(data);
 	  } catch (err) {
 		  alert(err.response.data.errorMessage);
