@@ -2,12 +2,10 @@ import React, { useState,useContext } from 'react';
 import '../App.css';
 //import { userRegister } from '../Context/State';
 import { useNavigate } from 'react-router-dom';
-import { ref, uploadBytesResumable } from "firebase/storage";
-import { storage } from '../firebase.js';
 import Context from '../Context/Context';
 
 const SignUp = () => {
-  const { userRegister } = useContext(Context);
+  const { userRegister,uploadImage } = useContext(Context);
   const [user,setUser] = useState({
     name:"",
     email:"",
@@ -26,7 +24,7 @@ const SignUp = () => {
     })
   }
   
-  const onSignUp = (e) => {
+  const onSignUp = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -35,7 +33,11 @@ const SignUp = () => {
       Password: password
     };
 
-    const res = userRegister(data);
+    let url;
+    if (img) url = await uploadImage(img);
+    data['Profile_Pic'] = url;
+
+    const res = await userRegister(data);
 
     if (res && res.status) {
       setTimeout(() => {
@@ -43,25 +45,6 @@ const SignUp = () => {
       }, 100);
       window.location.reload();
     }
-  }
-
-  const onUpload = () => {
-    if (!img) return;
-
-    const storageRef = ref(storage, `images/${user.email}`);
-    const uploadTask = uploadBytesResumable(storageRef, img);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-      }
-    )
   }
 
   return (
@@ -105,7 +88,7 @@ const SignUp = () => {
         <button
           type="submit"
           className="button btn-outline-success"
-          onClick={onUpload}>Register</button>
+        >Register</button>
       </form>
       </div>
     </div>
