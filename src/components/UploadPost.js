@@ -130,7 +130,7 @@ const UploadPost = () => {
               {/* File Input */}
               <FormControl fullWidth className="mb-3">
                 
-                <Input type="file" id="input-upload-photo" onChange={handleFileChange} multiple />
+                <Input type="file" id="input-upload-photo" onChange={handleFileChange} inputProps = {{ multiple: true }} />
               </FormControl>
 
               {/* Upload Button */}

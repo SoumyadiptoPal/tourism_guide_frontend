@@ -20,7 +20,7 @@ const PostFooter = ({ likes, comments, shares, currentUser, id }) => {
   const [share, setShare] = useState(false);
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
-  const { commentPost } = useContext(Context);
+  const { commentPost,likePost } = useContext(Context);
   const style = {
     position: "absolute",
     top: "50%",
@@ -40,13 +40,19 @@ const PostFooter = ({ likes, comments, shares, currentUser, id }) => {
     // populateComments()
   }, []);
 
-  const handleLike = () => {
+  const handleLike = async () => {
     setLike(!like);
+    
+    const data = {
+        _id: id
+    };
+    await likePost(data);
   };
 
   const handleComment = () => {
     setOpen(true);
   };
+
   const handleSubmitComment = async () => {
     handleClose();
     setComment(true);
