@@ -75,109 +75,109 @@ const State = (props) => {
     try {
       const res = await axios.get(`${host}/post/`);
       return res.data;
-		} catch (err) {
-			alert(err.response.data.errorMessage);
-		}
-	}
-
-	const uploadPost = async (data) => {
-		try {
-			const res = await axios.put(`${host}/post/create`, data);
-			alert(res.data.title);
-			return res.data;
-		} catch (err) {
-			alert(err.response.data.errorMessage);
-		}
-	}
-
-	const likePost = async () => {
-		try {
-			const res = await axios.post(`${host}/post/like`);
-			alert(res.data.title);
-			return res.data;
-		} catch (err) {
-			alert(err.response.data.errorMessage);
-		}
-	}
-
-	const commentPost = async (data) => {
-		try {
-			const res = await axios.post(`${host}/post/comment`, data);
-			return res.data;
-		} catch (err) {
-			alert(err.response.data.errorMessage);
-		}
-	}
-
-	const uploadImage = async (image) => {
-		const storageRef = ref(storage, `images/${image.name}`);
-		const uploadTask = uploadBytesResumable(storageRef, image);
-	
-		let imgUrl;
-		uploadTask.on(
-			"state_changed",
-			(snapshot) => {},
-			(error) => {
-				console.log(error);
-			}
-		);
-
-		await uploadTask;
-		imgUrl = await getDownloadURL(ref(storage, `images/${image.name}`));
-		alert(imgUrl);
-		return imgUrl;
-	}
-
-  const addFollower= async (id)=>{
-    const data={_id: id};
-    const res = await axios.post(`${host}/auth/addFollower`, data);
-
-    //TODO: Make a call to update the local Storage
+    } catch (err) {
+        alert(err.response.data.errorMessage);
+    }
   }
 
-  const removeFollower= async (id) => {
-    const data={_id: id};
-    const res = await axios.post(`${host}/auth/removeFollower`, data);
-
-    //TODO: Make a call to update the local Storage
-  }
-
-  const updateArray=async (ids)=>{
-    const data={
-      ids:ids
+    const uploadPost = async (data) => {
+        try {
+            const res = await axios.put(`${host}/post/create`, data);
+            alert(res.data.title);
+            return res.data;
+        } catch (err) {
+            alert(err.response.data.errorMessage);
+        }
     }
 
-    const res = await axios.post(`${host}/auth/populate`, data);
-    return res.data.ans;
-  }
-
-
-  const fetchPosts=async(id)=>{
-    const params={
-      "_id": id
+    const likePost = async (data) => {
+        try {
+            const res = await axios.post(`${host}/post/like`, data);
+            alert(res.data.title);
+            return res.data;
+        } catch (err) {
+            alert(err.response.data.errorMessage);
+        }
     }
-    const res =await axios.get(`${host}/post/getallposts`, {
-      params: params
+
+    const commentPost = async (data) => {
+        try {
+            const res = await axios.post(`${host}/post/comment`, data);
+            return res.data;
+        } catch (err) {
+            alert(err.response.data.errorMessage);
+        }
     }
-  )
-    console.log(res.data);
-    return res.data.posts;
-  }
 
-  const getUserData = async (data) => {
-	try {
-		const res = await axios.get(`${host}/auth/userDetails`, data);
-		return res.data;
-	} catch (err) {
-		alert(err.response.data.errorMessage);
-	}
-  }
+    const uploadImage = async (image) => {
+        const storageRef = ref(storage, `images/${image.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, image);
 
-  return(
-    <Context.Provider value={{getUserData,uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower, updateArray, fetchPosts}}>
-      {props.children}
-    </Context.Provider>
-  )
+        let imgUrl;
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {},
+            (error) => {
+                console.log(error);
+            }
+        );
+
+        await uploadTask;
+        imgUrl = await getDownloadURL(ref(storage, `images/${image.name}`));
+        alert(imgUrl);
+        return imgUrl;
+    }
+
+    const addFollower= async (id)=>{
+        const data={_id: id};
+        const res = await axios.post(`${host}/auth/addFollower`, data);
+
+        //TODO: Make a call to update the local Storage
+    }
+
+    const removeFollower= async (id) => {
+        const data={_id: id};
+        const res = await axios.post(`${host}/auth/removeFollower`, data);
+
+        //TODO: Make a call to update the local Storage
+    }
+
+    const updateArray=async (ids)=>{
+        const data={
+            ids:ids
+        }
+
+        const res = await axios.post(`${host}/auth/populate`, data);
+        return res.data.ans;
+    }
+
+
+    const fetchPosts=async(id)=>{
+        const params={
+            "_id": id
+        }
+        const res =await axios.get(`${host}/post/getallposts`, {
+            params: params
+        }
+        )
+        console.log(res.data);
+        return res.data.posts;
+    }
+
+    const getUserData = async (data) => {
+        try {
+            const res = await axios.get(`${host}/auth/userDetails`, data);
+            return res.data;
+        } catch (err) {
+            alert(err.response.data.errorMessage);
+        }
+    }
+
+    return(
+        <Context.Provider value={{getUserData,uploadImage,userRegister,userLogin,userAuth,getPost,uploadPost,likePost,commentPost,userId,setUserId,addFollower,removeFollower, updateArray, fetchPosts}}>
+        {props.children}
+        </Context.Provider>
+    )
 }
 
 export default State;
