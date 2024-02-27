@@ -94,7 +94,7 @@ const Details = ({ user }) => {
       <div className="detail_cont2">
         <div style={{ border: "1px solid black", padding: "1px 5px" }}>
           <span>Email: </span>
-          <span style={{ marginLeft: "45px" }}>
+          <span style={{ marginLeft: "10px" }}>
             {user.Email}{" "}
             {flag ? (
               <Button
