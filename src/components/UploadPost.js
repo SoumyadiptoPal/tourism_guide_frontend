@@ -63,7 +63,7 @@ const UploadPost = () => {
 	for (let image of images) {
       try { 		
 		const url = await uploadImage(image);
-    array=[...array,url];
+        array=[...array,url];
 	  } catch (error) {
 		alert(error);
 		return;
@@ -78,15 +78,15 @@ const UploadPost = () => {
   }
 
   return (
-    <Container maxWidth="lg" className="upload-post-container">
+    <Container maxWidth="full" className="upload-post-container">
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           {/* Carousel Component */}
           <Paper elevation={3} className="carousel-container">
             <Carousel>
-              {items.map((item) => (
-                <div key={item.id}>
-                  <img src={item.src} alt={item.alt} style={{ width: '72%' }} />
+              {images.map((item,idx) => (
+                <div key={idx}>
+                  <img src={URL.createObjectURL(item)} />
                 </div>
               ))}
             </Carousel>
