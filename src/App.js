@@ -29,7 +29,7 @@ function App() {
   return (
     <State>
       <Router>
-      <div>
+      <div className="home">
         <Navbar/>
         <Routes>
           {/* commented out code will add security to the code. Only if the user is logged in, the user will be allowed to enter home.  */}

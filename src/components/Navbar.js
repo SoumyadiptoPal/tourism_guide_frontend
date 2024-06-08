@@ -15,7 +15,7 @@ const Navbar = () => {
     window.location.reload();
   }
   return (
-    <div style={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", padding:"0px 20px", backgroundColor:"rgb(25,118,210)", height:"50px", position:"sticky", top:"0px", zIndex:"100"}}>
+    <div style={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", padding:"8px 20px", backgroundColor:"rgb(25,118,210)", position:"sticky", top:"0px", zIndex:"100"}}>
       <div style={{color:"white", fontSize:"1.5rem", fontWeight:"bolder", cursor:"pointer"}}onClick={()=>navigate('/')}>Tourism Guide</div>
       {(localStorage.getItem('userData'))?
       <>

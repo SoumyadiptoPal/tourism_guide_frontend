@@ -14,26 +14,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import '../UploadPost.css';
 import Context from '../Context/Context';
 
-
-
-const items = [
-  {
-    id: 1,
-    src: 'https://th.bing.com/th/id/OIG.YaPpNeB7O.J1wIwa8rnj?w=270&h=270&c=6&r=0&o=5&dpr=1.5&pid=ImgGn',
-    alt: 'Image 1',
-  },
-  {
-    id: 2,
-    src: 'https://th.bing.com/th/id/OIG._Z2M4PuGy8DPMFLVh5.L?w=270&h=270&c=6&r=0&o=5&dpr=1.5&pid=ImgGn',
-    alt: 'Image 2',
-  },
-  {
-    id: 3,
-    src: 'https://th.bing.com/th/id/OIG.yT1lJqGUEFWumCmyJy09?w=270&h=270&c=6&r=0&o=5&dpr=1.5&pid=ImgGn',
-    alt: 'Image 3',
-  },
-];
-
 const UploadPost = () => {
   const { uploadImage, uploadPost } = useContext(Context);
 
@@ -78,8 +58,8 @@ const UploadPost = () => {
   }
 
   return (
-    <Container maxWidth="full" className="upload-post-container">
-      <Grid container spacing={3}>
+    <div className="upload_post">
+      <Grid container spacing={0}>
         <Grid item xs={12} sm={6}>
           {/* Carousel Component */}
           <Paper elevation={3} className="carousel-container">
@@ -93,7 +73,7 @@ const UploadPost = () => {
           </Paper>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} style={{padding:"0px 20px"}}>
           {/* Description Container */}
           <Paper elevation={3} className="description-container">
             <div className="location-info">
@@ -143,7 +123,7 @@ const UploadPost = () => {
           </Paper>
         </Grid>
       </Grid>
-    </Container>
+    </div>
   );
 };
 

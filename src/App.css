@@ -1,4 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Ubuntu:wght@700&display=swap');
+.upload_post{
+    background: center/cover no-repeat url('/public/images/sunset.jpg');
+    display: flex;
+    padding: 0px 24px; 
+    width: 100%;
+    flex-grow: 1; 
+    justify-items: center; 
+    align-items: center;
+}
+.home{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
 .auth_container{
     border:2px solid black;
     display: flex;
@@ -16,7 +30,7 @@
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
-    height: 91.75vh;
+    flex-grow: 1;
 }
 .form{
     display: flex;
