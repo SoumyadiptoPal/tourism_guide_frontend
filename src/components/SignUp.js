@@ -3,6 +3,7 @@ import '../App.css';
 //import { userRegister } from '../Context/State';
 import { useNavigate } from 'react-router-dom';
 import Context from '../Context/Context';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const SignUp = () => {
   const { userRegister,uploadImage } = useContext(Context);
@@ -11,7 +12,7 @@ const SignUp = () => {
     email:"",
     password:""
   })
-
+  const [flag, setFlag] = useState(false);
   const { name, email, password } = user;
   const [img, setImg] = useState('');
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const SignUp = () => {
   
   const onSignUp = async (e) => {
     e.preventDefault();
+    setFlag(true);
 
     const data = {
       Email: email, 
@@ -45,10 +47,42 @@ const SignUp = () => {
       }, 100);
       window.location.reload();
     }
+    setFlag(false);
   }
 
   return (
     <div className='whole'>
+      {flag === true && (
+        <div
+          style={{
+            position: "absolute",
+            height: "100%",
+            width: "100%",
+            top: 0,
+            left:0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            opacity:1,
+            background: "rgba(255,255,255,0.5)",
+            zIndex: 200,
+          }}
+        >
+          <ClipLoader
+            color="blue"
+            loading={flag}
+            size={50}
+            cssOverride={{
+              borderWidth: 5,
+            }}
+            width="30px"
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            borderWidth="20px"
+          />
+          <h3 style={{ marginLeft: "20px" }}>Please wait....</h3>
+        </div>
+      )}
       <div className='auth_container'>
         <h1 className='head'>Welcome to Tourism Guide!</h1>
         <h2 className='topic' style={{padding:'5px'}}>Create an Account</h2>

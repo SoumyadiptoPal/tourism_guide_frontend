@@ -93,7 +93,7 @@ const State = (props) => {
     const likePost = async (data) => {
         try {
             const res = await axios.post(`${host}/post/like`, data);
-            alert(res.data.title);
+            // alert(res.data.title);
             return res.data;
         } catch (err) {
             alert(err.response.data.errorMessage);
@@ -124,7 +124,7 @@ const State = (props) => {
 
         await uploadTask;
         imgUrl = await getDownloadURL(ref(storage, `images/${image.name}`));
-        alert(imgUrl);
+        // alert(imgUrl);
         return imgUrl;
     }
 
